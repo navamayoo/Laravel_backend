@@ -13,10 +13,10 @@ class NotesController extends Controller
     public function index()
     {
         try {
-            $Notes = Note::select('code', 'title', 'description')
+            $notes = Note::select('code', 'title', 'description')
                 ->where('status', '=', 1)
                 ->get();
-            return response()->json(['status' => 200, 'Notes' => $Notes]);
+            return response()->json(['status' => 200, 'notes' => $notes]);
         } catch (\Exception $e) {
             return  response()->json([
                 'status' => 500,
@@ -28,10 +28,10 @@ class NotesController extends Controller
     public function show($id)
     {
         try {
-            $Note = Note::select('code', 'title', 'description')
+            $note = Note::select('code', 'title', 'description')
                 ->where('code', '=', $id)->where('status', '=', 1)
                 ->first();
-            return response()->json(['status' => 200, 'Note' => $Note]);
+            return response()->json(['status' => 200, 'note' => $note]);
         } catch (\Exception $e) {
             return  response()->json([
                 'status' => 500,
